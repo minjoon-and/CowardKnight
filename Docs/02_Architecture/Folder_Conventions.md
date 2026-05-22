@@ -28,7 +28,7 @@ Source/CowardKnight/UI/           ↔   Content/UI/
 
 C++ 도메인이 존재하면 대응되는 에셋 도메인도 존재해야 합니다. 모든 하위 폴더가 완벽하게 1:1일 필요는 없지만, 1차 도메인 폴더 이름은 일치시킵니다.
 
-임포트한 Marketplace/Sample 에셋 폴더(예: `dRealWarriorPack`, `Fantastic_Village_Pack`)는 도메인 폴더가 아니며, `Content/` 아래에 import한 이름 그대로 둡니다.
+임포트한 Marketplace/Sample 에셋은 도메인 폴더가 아닙니다. 아래 '외부 에셋' 규칙을 따릅니다.
 
 ## 도메인 목록
 
@@ -68,7 +68,7 @@ Source/CowardKnight/          Content/
 : Behavior Tree, Blackboard, AI Controller, Perception, 적 의사결정 로직.
 
 `Stages`
-: 맵, 스테이지 정의, 웨이브 정의, 스폰 규칙, 스테이지 스크립팅.
+: 스테이지 정의, 웨이브 정의, 스폰 규칙, 스테이지 스크립팅. 스테이지 맵 파일은 `Content/Maps/Stages/`에 둡니다.
 
 `UI`
 : Widget, HUD, 메뉴, 레벨업 카드 UI, CommonUI 스타일 레이아웃 클래스.
@@ -88,6 +88,29 @@ Source/CowardKnight/          Content/
 - `Developer`: 디버그 전용 도구나 Editor Utility가 필요해질 때.
 
 도메인을 추가하거나 제거하면 이 문서와 `CLAUDE.md`의 도메인 목록을 함께 갱신하고, 개발 로그에 남깁니다.
+
+## 맵 폴더 (Maps)
+
+모든 맵(`.umap`)은 `Content/Maps/` 아래에 모읍니다.
+
+- 맵은 경로로 로드되는 특별한 에셋이라, 도메인 폴더에 흩어두지 않고 한곳에 모읍니다.
+- `Maps`는 도메인 폴더가 아니지만 우리 게임 콘텐츠이므로 접두사 없이 둡니다.
+- 용도별 하위 폴더로 정리합니다.
+  - `Maps/Stages/`: 스테이지 플레이 맵 (Stage01, Stage02 등)
+  - `Maps/Menu/`: 메인 메뉴, 게임오버 등 프론트엔드 맵
+  - `Maps/Dev/`: 화이트박스, 테스트용 맵
+- `Stages` 도메인은 맵 파일이 아니라 스테이지 로직·데이터(웨이브·스폰 정의, 스테이지 Blueprint)를 담당합니다.
+- 맵을 옮기거나 이름을 바꿀 때는 반드시 Unreal Editor의 Content Browser에서 합니다. 파일 탐색기로 옮기면 참조가 깨집니다.
+- 기본 맵(`EditorStartupMap`, `GameDefaultMap`)으로 지정된 맵을 옮기면 Project Settings의 Maps & Modes에서 경로를 갱신합니다.
+
+## 외부 에셋 (_Vendor)
+
+Fab 등에서 받은 Marketplace/Sample 에셋은 `Content/_Vendor/` 아래에 모읍니다.
+
+- `_Vendor`는 도메인 폴더가 아니라 외부 에셋 원본 보관소입니다. `_` 접두사로 Content Browser에서 도메인 폴더와 구분됩니다.
+- 받은 팩은 import한 이름 그대로 `Content/_Vendor/<팩이름>/`에 둡니다.
+- 실제 게임에 사용할 때는 원본을 직접 쓰지 않고, 해당 도메인 폴더에 child Blueprint나 wrapper 에셋을 만들어 씁니다.
+- 에셋 팩을 옮기거나 정리할 때는 반드시 Unreal Editor의 Content Browser에서 합니다. 파일 탐색기로 옮기면 에셋 참조가 깨집니다.
 
 ## Placeholder 규칙
 

@@ -73,3 +73,20 @@ Codex에서 Claude Code로 작업 도구를 옮기면서 프로젝트 골격을 
 
 - 커밋 메시지에 `Co-Authored-By` 등 AI 공동 작성자·생성 표기를 넣지 않습니다.
 - `Git_Convention.md`, `CLAUDE.md`, `/깃메시지` 커맨드에 규칙을 명시했습니다.
+
+### 외부 에셋 폴더 규칙
+
+Fab 등에서 받은 임포트 에셋을 `Content/_Vendor/`에 모으기로 했습니다.
+
+- `_Vendor`는 도메인 폴더가 아닌 외부 에셋 원본 보관소입니다. `_` 접두사로 Content Browser에서 도메인 폴더와 구분됩니다.
+- 기존 `dRealWarriorPack`, `Fantastic_Village_Pack`은 Unreal Editor에서 `_Vendor`로 이동 예정.
+- `Folder_Conventions.md`, `Unreal_Standards.md`에 규칙을 반영했습니다.
+
+### 맵 폴더 규칙
+
+모든 맵을 `Content/Maps/`에 모으기로 했습니다.
+
+- 용도별 하위 폴더: `Maps/Stages/`, `Maps/Menu/`, `Maps/Dev/`.
+- `Stages` 도메인 정의에서 맵을 빼고 스테이지 로직·데이터 담당으로 조정했습니다.
+- 기존 `Content/NewMap.umap`은 Unreal Editor에서 `Maps/Dev/`로 이동 예정.
+- `Folder_Conventions.md`에 규칙을 반영했습니다.
