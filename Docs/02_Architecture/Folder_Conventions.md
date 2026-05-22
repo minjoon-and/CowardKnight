@@ -50,6 +50,7 @@ Source/CowardKnight/
   Developer/
   Feedback/
   Input/
+  Player/
   Stages/
   UI/
 ```
@@ -68,6 +69,7 @@ Content/CowardKnight/
   Developer/
   Feedback/
   Input/
+  Player/
   Stages/
   UI/
 ```
@@ -75,7 +77,10 @@ Content/CowardKnight/
 ## 도메인 의미
 
 `Core`
-: GameMode, GameState, PlayerState, GameInstance, 전역 프로젝트 클래스.
+: GameMode, GameState, GameInstance, 전역 프로젝트 클래스, 부트스트랩.
+
+`Player`
+: PlayerController, PlayerState, LocalPlayer, 플레이어 세션 단위 클래스. Lyra가 PlayerController/PlayerState를 별도 `Player` 도메인으로 두는 방식을 따릅니다.
 
 `Characters`
 : 볼트, 적, NPC, Animation Blueprint, 캐릭터 전용 컴포넌트.
