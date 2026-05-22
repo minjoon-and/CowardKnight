@@ -43,3 +43,33 @@ Codex에서 Claude Code로 작업 도구를 옮기면서 프로젝트 골격을 
 - `CKPlayerController`는 이미 `Source/CowardKnight/Player/`에 있어 코드 이동 없음.
 - Codex가 만든 C++(`CKBoltCharacter`, `CKGameMode`, `CKPlayerController`)는 컨벤션을 따르고 있어 유지하기로 함.
 - 미결: Git 브랜치 전략과 Git LFS(`.uasset` 바이너리) 규칙은 아직 문서화되지 않음.
+
+### Content 폴더 구조 재편과 도메인 정리
+
+폴더 구조를 다시 검토해 프로토타입에 맞게 단순화했습니다.
+
+결정 사항:
+
+- `Content/CowardKnight/` 래퍼 폴더를 제거하고 도메인 폴더를 `Content/` 바로 아래로 옮겼습니다.
+- 미러 규칙을 `Source/CowardKnight/<도메인>` ↔ `Content/<도메인>`으로 다시 정의했습니다. `CowardKnight`는 C++ 모듈 폴더라 `Content`에는 두지 않습니다.
+- Phase 1 기준 9개 도메인만 유지: AI, Characters, Combat, Core, Data, Input, Player, Stages, UI.
+- `AbilitySystem`, `Camera`, `Developer`, `Feedback` 도메인은 삭제하고, 필요해질 때 다시 추가하기로 했습니다.
+
+변경:
+
+- `Source/CowardKnight/`와 `Content/`에서 도메인 폴더 4개 삭제, Content 도메인 9개를 래퍼 밖으로 이동.
+- `Folder_Conventions.md`를 새 구조로 재작성.
+- `CLAUDE.md`, `Unreal_Standards.md`, `Project_Principles.md`, `Coding_Convention.md`의 폴더 경로 표현 갱신.
+
+메모:
+
+- 삭제·이동한 폴더는 모두 비어 있어(`.gitkeep`만) C++ 코드와 빌드에 영향 없음.
+- `Content/dRealWarriorPack`, `Content/Fantastic_Village_Pack`은 임포트 에셋 검토용으로 그대로 둠.
+- 폴더 변경 후 Unreal Editor의 Content Browser 새로고침 또는 재시작 필요.
+
+### 커밋 작성자 표기 규칙
+
+커밋은 개발자 단독 작성으로 기록하기로 했습니다.
+
+- 커밋 메시지에 `Co-Authored-By` 등 AI 공동 작성자·생성 표기를 넣지 않습니다.
+- `Git_Convention.md`, `CLAUDE.md`, `/깃메시지` 커맨드에 규칙을 명시했습니다.

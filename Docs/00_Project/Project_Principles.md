@@ -56,4 +56,4 @@
 2. 최근 결정 사항을 확인하기 위해 `Docs/04_Logs/Development_Log.md`를 읽습니다.
 3. 코드나 에셋을 수정하기 전 사용자에게 물어봅니다.
 4. 변경은 작게 유지하고, 수정 전에 어느 폴더/모듈을 건드릴지 설명합니다.
-5. `Source/CowardKnight/`와 `Content/CowardKnight/`의 폴더 미러링 규칙을 따릅니다.
+5. `Source/CowardKnight/<도메인>`과 `Content/<도메인>`의 폴더 미러링 규칙을 따릅니다.

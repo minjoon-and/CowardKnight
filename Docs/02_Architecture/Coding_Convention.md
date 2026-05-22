@@ -112,7 +112,7 @@ Blueprint는 아래 영역을 담당합니다.
 코드를 수정하기 전에 LLM은 아래 질문에 답해야 합니다.
 
 - 이 변경은 어느 module/domain이 소유하는가?
-- 대응되는 `Content/CowardKnight/` 폴더가 존재하는가?
+- 대응되는 `Content/` 도메인 폴더가 존재하는가?
 - 이 코드는 C++로 고정할 만큼 안정적인가, 아니면 Data/Blueprint prototype으로 시작해야 하는가?
 - 가장 작은 buildable step은 무엇인가?
 - 사용자가 코드 수정을 승인했는가?

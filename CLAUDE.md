@@ -35,8 +35,8 @@
 
 ## 핵심 구조 규칙
 
-- 코드는 `Source/CowardKnight/`, 게임 에셋은 `Content/CowardKnight/` — **1차 도메인 폴더 이름을 미러링**합니다.
-- 도메인: `AI` `AbilitySystem` `Camera` `Characters` `Combat` `Core` `Data` `Developer` `Feedback` `Input` `Player` `Stages` `UI`.
+- C++ 도메인은 `Source/CowardKnight/<도메인>`, 대응 에셋은 `Content/<도메인>` — **1차 도메인 폴더 이름을 미러링**합니다 (`Source/`의 `CowardKnight`는 C++ 모듈 폴더).
+- 도메인 9종: `AI` `Characters` `Combat` `Core` `Data` `Input` `Player` `Stages` `UI`.
 - 클래스는 Unreal 표준 접두사 + 프로젝트 접두사 `CK` (예: `ACKBoltCharacter`, `UCKHealthComponent`, `FCKAbilityDefinition`).
 - Markdown 문서는 `Docs/`에만 둡니다. `Source/`나 `Content/`에 `.md`를 두지 않습니다.
 
@@ -48,3 +48,7 @@
 | `/깃메시지` | 변경사항을 분석해 Git_Convention 형식 커밋 메시지 추천 |
 | `/개발로그` | 이번 세션 작업을 Development_Log.md에 기록 |
 | `/컨벤션점검` | 코드를 프로젝트 컨벤션 기준으로 점검하고 위반 보고 |
+
+## 커밋
+
+커밋은 개발자 단독 작성으로 기록합니다. 커밋 메시지에 `Co-Authored-By` 등 AI 공동 작성자·생성 표기를 넣지 않습니다. 자세한 규칙은 `Docs/02_Architecture/Git_Convention.md`를 따릅니다.

@@ -91,11 +91,11 @@ Parrot에서는 아래 방향을 참고합니다.
 
 ## Content Browser 정리
 
-게임 전용 에셋은 `Content/CowardKnight/` 아래에 둡니다.
+게임 전용 에셋은 `Content/`의 도메인 폴더(`Content/Characters/`, `Content/UI/` 등) 아래에 둡니다.
 
-Marketplace 또는 Sample 에셋은 검토 전까지 원래 import 폴더에 둡니다.
+Marketplace 또는 Sample 에셋은 import한 폴더 이름 그대로 `Content/` 아래에 두고, 검토 전까지 도메인 폴더와 섞지 않습니다.
 
-실제 게임에서 사용할 때는 `Content/CowardKnight/` 아래에 프로젝트 소유 wrapper asset 또는 child Blueprint를 만듭니다.
+실제 게임에서 사용할 때는 도메인 폴더 아래에 프로젝트 소유 wrapper asset 또는 child Blueprint를 만듭니다.
 
 ## 데이터 기반 규칙
 

@@ -5,73 +5,46 @@
 프로젝트 루트:
 
 - `Docs/`: 사람과 LLM 에이전트가 읽는 Markdown 문서.
-- `Source/CowardKnight/`: C++ 소스 코드.
-- `Content/CowardKnight/`: 이 게임을 위해 만든 Unreal 프로젝트 에셋.
+- `Source/CowardKnight/`: C++ 소스 코드. `CowardKnight`는 C++ 모듈 이름이라 이 폴더 이름은 고정입니다.
+- `Content/`: Unreal 에셋. 게임 도메인 폴더를 이 폴더 바로 아래에 둡니다.
 - `Config/`: Unreal 프로젝트 설정.
-
-프로젝트 에셋은 되도록 `Content/` 바로 아래에 두지 않습니다.
-
-정리 전부터 존재하던 전환용 에셋은 예외로 둘 수 있습니다.
 
 ## 미러 규칙
 
-`Content/CowardKnight/`는 `Source/CowardKnight/`의 주요 게임플레이 도메인을 따라갑니다.
+게임플레이 도메인은 C++와 에셋 양쪽에서 같은 이름을 씁니다.
 
-C++ 도메인이 존재하면, 대응되는 에셋 도메인도 존재해야 합니다.
+- C++ 도메인: `Source/CowardKnight/<도메인>/`
+- 대응 에셋: `Content/<도메인>/`
+
+`Source/`의 `CowardKnight`는 C++ 모듈 폴더라 Unreal이 강제합니다. `Content/`에는 이 모듈 폴더를 두지 않고 도메인 폴더를 바로 아래에 둡니다. 양쪽에서 일치시키는 것은 **1차 도메인 폴더 이름**입니다.
 
 예시:
 
 ```text
-Source/CowardKnight/Characters/
-Content/CowardKnight/Characters/
-
-Source/CowardKnight/Combat/
-Content/CowardKnight/Combat/
-
-Source/CowardKnight/UI/
-Content/CowardKnight/UI/
+Source/CowardKnight/Characters/   ↔   Content/Characters/
+Source/CowardKnight/Combat/       ↔   Content/Combat/
+Source/CowardKnight/UI/           ↔   Content/UI/
 ```
 
-모든 하위 폴더가 완벽하게 1:1일 필요는 없습니다.
+C++ 도메인이 존재하면 대응되는 에셋 도메인도 존재해야 합니다. 모든 하위 폴더가 완벽하게 1:1일 필요는 없지만, 1차 도메인 폴더 이름은 일치시킵니다.
 
-하지만 1차 도메인 폴더 이름은 최대한 일치시킵니다.
+임포트한 Marketplace/Sample 에셋 폴더(예: `dRealWarriorPack`, `Fantastic_Village_Pack`)는 도메인 폴더가 아니며, `Content/` 아래에 import한 이름 그대로 둡니다.
 
-## 제안 Source 도메인
+## 도메인 목록
 
-```text
-Source/CowardKnight/
-  AI/
-  AbilitySystem/
-  Camera/
-  Characters/
-  Combat/
-  Core/
-  Data/
-  Developer/
-  Feedback/
-  Input/
-  Player/
-  Stages/
-  UI/
-```
-
-## 제안 Content 도메인
+Phase 1 프로토타입 기준으로 아래 9개 도메인을 사용합니다.
 
 ```text
-Content/CowardKnight/
-  AI/
-  AbilitySystem/
-  Camera/
-  Characters/
-  Combat/
-  Core/
-  Data/
-  Developer/
-  Feedback/
-  Input/
-  Player/
-  Stages/
-  UI/
+Source/CowardKnight/          Content/
+  AI/                           AI/
+  Characters/                   Characters/
+  Combat/                       Combat/
+  Core/                         Core/
+  Data/                         Data/
+  Input/                        Input/
+  Player/                       Player/
+  Stages/                       Stages/
+  UI/                           UI/
 ```
 
 ## 도메인 의미
@@ -88,9 +61,6 @@ Content/CowardKnight/
 `Combat`
 : 히트 판정, 대미지, 공격 trace, 전투 컴포넌트, 무기 로직.
 
-`AbilitySystem`
-: Gameplay Ability System 클래스, 능력 데이터, Gameplay Effect, Attribute, Gameplay Tags.
-
 `Input`
 : Enhanced Input Action, Mapping Context, 입력 설정 데이터.
 
@@ -100,20 +70,24 @@ Content/CowardKnight/
 `Stages`
 : 맵, 스테이지 정의, 웨이브 정의, 스폰 규칙, 스테이지 스크립팅.
 
-`Camera`
-: 횡스크롤 카메라 동작, 카메라 볼륨, 카메라 모드 데이터.
-
 `UI`
 : Widget, HUD, 메뉴, 레벨업 카드 UI, CommonUI 스타일 레이아웃 클래스.
 
 `Data`
 : Data Asset, Data Table, Curve, 설정용 에셋.
 
-`Feedback`
-: VFX, SFX hook, Camera Shake, Hit Stop, 화면 효과.
+## 도메인 추가 규칙
 
-`Developer`
-: 디버그 전용 도구, Editor Utility, prototype helper.
+프로토타입 단계에서는 도메인을 최소한으로 유지합니다.
+
+아래 도메인은 지금은 만들지 않고, 실제로 필요해질 때 `Source`와 `Content` 양쪽에 함께 추가합니다.
+
+- `AbilitySystem`: 레벨업 능력이 Gameplay Ability System을 쓸 만큼 복잡해질 때.
+- `Camera`: 카메라 볼륨·카메라 모드 등 별도 카메라 로직이 필요해질 때. 현재 횡스크롤 카메라는 캐릭터에 내장되어 있습니다.
+- `Feedback`: VFX, SFX, Camera Shake, Hit Stop을 별도로 관리해야 할 때.
+- `Developer`: 디버그 전용 도구나 Editor Utility가 필요해질 때.
+
+도메인을 추가하거나 제거하면 이 문서와 `CLAUDE.md`의 도메인 목록을 함께 갱신하고, 개발 로그에 남깁니다.
 
 ## Placeholder 규칙
 
